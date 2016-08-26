@@ -1,5 +1,5 @@
 Users:
-  1. Add a user w/ suod
+  1. Add a user
     adduser myusername
   2. sudo
     sudo visudo
