@@ -1,0 +1,68 @@
+Users:
+  1. Add a user w/ suod
+    adduser myusername
+  2. sudo
+    sudo visudo
+  3. remove default users (e.g. pi), 
+   !!AFTER you've logged in as a different user and verified sudo
+    deluser -remove-home pi
+
+Apache:
+	1. Install the apache server
+		apt-get -y install apache2
+	2. Set web permissions:
+		a. set /var/www directory permissions
+			sudo chgrp -R www-data /var/www
+			sudo chmod -R 775 /var/www
+			sudo chmod g+s /var/www
+			sudo chgrp -R www-data /var/www/html
+			sudo chmod -R 775 /var/www/html
+			sudo chmod g+s /var/www/html
+		b. add relevant users to www-data group
+			sudo usermod -a -G www-data username
+	3. Enable SSL:
+		a2ensite default-ssl
+		a2enmod ssl
+	4. Change listening ports (unless you really like 80 and 443):
+		vi /etc/apache2/ports.conf
+		vi /etc/apache2/sites-enabled/default-ssl.conf
+		vi /etc/apache2/sites-enabled/000-default.conf
+	5. Generate self-signed SSL cert:
+		openssl genrsa -aes256 -out myserver.key.secure 2048
+		openssl rsa -in myserver.key.secure -out myserver.key
+		openssl req -new -key myserver.key -out myserver.csr
+		openssl x509 -req -days 730 -in myserver.csr -signkey myserver.key -out myserver.crt
+		cp myserver.crt /etc/ssl/certs/
+		cp myserver.key /etc/ssl/private/
+		rm myserver.csr 
+		rm myserver.key.secure 
+	6. Restart apache
+		service apache2 restart
+
+MySQL:
+	1. Install mysql server
+  	sudo apt-get -y install mysql-server
+	2. Go into mysql
+		mysql -u root -p
+	3. Create user & set permissions
+		CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypasswd';
+		GRANT ALL PRIVILEGES ON *.* to 'myuser'@'localhost' WITH GRANT OPTION;
+
+PHP:
+	1. Install PHP CLI, PHP Apache Libraries and PHP-Mysql
+		apt-get install php5-cli
+		apt-get -y install libapache2-mod-php5
+		apt-get install php5-mysql
+
+File Shares:
+	1. Install samba
+		apt-get install samba
+	2. set a password for your user (this is different than the regular system passwords)
+		sudo smbpasswd -a myusername
+	3. vi /etc/samba/smb.conf  -- Append the following:
+		[<sharename>]
+		path=/path/to/share
+		valid users = <usernames>
+		read only = no
+	4. Restart Samba
+		service smbd restart
