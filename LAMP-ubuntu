@@ -54,6 +54,9 @@ PHP:
     apt-get -y install libapache2-mod-php5
     apt-get install php5-mysql
 
+NTFS support:
+  1. install ntfs-3g (for rw access)
+
 File Shares:
   1. Install samba
     apt-get install samba
