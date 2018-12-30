@@ -1,11 +1,8 @@
-Users:
-  1. Add a user
-    adduser myusername
-  2. sudo
-    sudo visudo
-  3. remove default users (e.g. pi), 
-   !!AFTER you've logged in as a different user and verified sudo
-    deluser -remove-home pi
+# Users
+  1. Add a user: ```adduser myusername```
+  2. give sudo privileges ```sudo visudo```
+  3. remove default users (e.g. pi) <b>AFTER</b> you've logged in as a different user and verified sudo<br>
+    ```deluser -remove-home pi```
 
 Apache:
   1. Install the apache server
