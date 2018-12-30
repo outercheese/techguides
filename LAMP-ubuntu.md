@@ -1,6 +1,6 @@
 # Users
-  1. Add a user: ```adduser myusername```
-  2. give sudo privileges ```sudo visudo```
+  1. Add a user<br> ```adduser myusername```
+  2. give sudo privileges<br> ```sudo visudo```
   3. remove default users (e.g. pi) <b>AFTER</b> you've logged in as a different user and verified sudo<br>
     ```deluser -remove-home pi```
 
