@@ -1,19 +1,22 @@
-# Users
-  1. Add a user<br> ```adduser myusername```
-  2. give sudo privileges<br> ```sudo visudo```
-  3. remove default users (e.g. pi) <b>AFTER</b> you've logged in as a different user and verified sudo<br>
-    ```deluser -remove-home pi```
+Users
+  1. Add a user
+    adduser myusername```
+  2. give sudo privileges
+    sudo visudo
+  3. remove default users (e.g. pi) <b>AFTER</b> you've logged in as a different user and verified sudo
+    deluser -remove-home pi
 
-# Apache
-  1. Install the apache server<br> ```apt-get -y install apache2```
+Apache
+  1. Install the apache server
+    apt-get -y install apache2
   2. Set web permissions<br>
     a. set /var/www directory permissions
-      <br> ```sudo chgrp -R www-data /var/www```
-      <br> ```sudo chmod -R 775 /var/www```
-      <br> ```sudo chmod g+s /var/www```
-      <br> ```sudo chgrp -R www-data /var/www/html```
-      <br> ```sudo chmod -R 775 /var/www/html```
-      <br> ```sudo chmod g+s /var/www/html```<br>
+      sudo chgrp -R www-data /var/www
+      sudo chmod -R 775 /var/www
+      sudo chmod g+s /var/www
+      sudo chgrp -R www-data /var/www/html
+      sudo chmod -R 775 /var/www/html
+      sudo chmod g+s /var/www/html
     b. add relevant users to www-data group
       sudo usermod -a -G www-data username
   3. Enable SSL:
