@@ -4,17 +4,16 @@
   3. remove default users (e.g. pi) <b>AFTER</b> you've logged in as a different user and verified sudo<br>
     ```deluser -remove-home pi```
 
-Apache:
-  1. Install the apache server
-    apt-get -y install apache2
-  2. Set web permissions:
+# Apache
+  1. Install the apache server<br> ```apt-get -y install apache2```
+  2. Set web permissions<br>
     a. set /var/www directory permissions
-      sudo chgrp -R www-data /var/www
-      sudo chmod -R 775 /var/www
-      sudo chmod g+s /var/www
-      sudo chgrp -R www-data /var/www/html
-      sudo chmod -R 775 /var/www/html
-      sudo chmod g+s /var/www/html
+      <br> ```sudo chgrp -R www-data /var/www```
+      <br> ```sudo chmod -R 775 /var/www```
+      <br> ```sudo chmod g+s /var/www```
+      <br> ```sudo chgrp -R www-data /var/www/html```
+      <br> ```sudo chmod -R 775 /var/www/html```
+      <br> ```sudo chmod g+s /var/www/html```<br>
     b. add relevant users to www-data group
       sudo usermod -a -G www-data username
   3. Enable SSL:
